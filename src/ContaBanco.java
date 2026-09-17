@@ -26,7 +26,9 @@ public class ContaBanco {
     }
     //-----------------------------------------------//
     public void statusConta(){
-        System.out.println("Conta Corrente: "+this.numConta+" - "+this.saldo);
+        System.out.println("Status da conta: " + this.status);
+        System.out.println(this.status + this.numConta + " - " + this.saldo);
+
     }
 
     public void abrirConta(String tipo){
