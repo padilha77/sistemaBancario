@@ -1,50 +1,81 @@
+import java.util.Scanner;
 public class ContaBanco {
+
 
     private String tipo;
     private int numConta;
     private double saldo;
-    private String status;
+    private boolean status;
+    private double valorSacado;
+    private double valorDepositado;
 
+    // getters, setters e construtores
 
-   public String getTipo() {
-        return this.tipo;
+    public void Construtor() {
+        saldo = 0;
+        status = false;
     }
-    public void setTipo(String tipo) {
-       this.tipo = tipo;
+
+    public void setNumConta(int n) {  //setters possuem parametros
+        this.numConta = n;
     }
-    public int getNumConta() {
-       return this.numConta;
+    public int getNumConta() {  //getters nao possuem parametros
+        return numConta;
     }
-    public void setNumConta(int numConta) {
-       this.numConta = numConta;
+
+    public void setTipo(String t) {
+        this.tipo = t;
+    }
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setSaldo(double s) {
+        this.saldo = s;
     }
     public double getSaldo() {
-       return this.saldo;
+        return saldo;
     }
-    public void setSaldo(double saldo) {
-       this.saldo = saldo;
+
+    public void setStatus(boolean st) {
+        this.status = st;
     }
-    //-----------------------------------------------//
+    public boolean getStatus() {
+        return status;
+    }
+
+
+    /*-------------  métodos  -------------*/
+
+
     public void statusConta(){
         System.out.println("Status da conta: " + this.status);
-        System.out.println(this.status + this.numConta + " - " + this.saldo);
-
     }
 
-    public void abrirConta(String tipo){
-        this.tipo = tipo;
+    public void abrirConta() {
+        System.out.println("Conta aberta! ");
     }
     public void fecharConta(){
-        this.saldo = 0;
+        System.out.println("Conta Fechada! ");
     }
-    public void depositar(double valor){
-        this.saldo += valor;
+
+    public void depositar() {
+        Scanner usuarioD = new Scanner(System.in);
+        System.out.println("Qual valor você quer depositar? ");
+        this.valorDepositado = usuarioD.nextDouble();
+        System.out.println("Você depositou R$" + this.valorDepositado);
     }
-    public void sacar(double valor){
-        this.saldo -= valor;
+
+    public void sacar() {
+        Scanner usuarioS = new Scanner(System.in);
+        System.out.println("Qual valor você quer sacar? ");
+        this.valorSacado = usuarioS.nextDouble();
+        System.out.println("Você sacou R$" + this.valorSacado);
+
     }
     public void pagarMensal(){
         this.saldo = 0;
     }
+
 
 }
