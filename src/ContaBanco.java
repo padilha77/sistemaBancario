@@ -8,9 +8,9 @@ public class ContaBanco {
 
     // getters, setters e construtores
 
-    public void Construtor() {
-        saldo = 0;
-        status = false;
+    public void Construtor() {   //toda conta aberta começara com 0 de saldo
+        this.saldo = 0;
+        this.status = false;
     }
 
     public void setNumConta(int n) {  //setters possuem parametros
@@ -42,23 +42,24 @@ public class ContaBanco {
     }
 
 
-    /*-------------  métodos  -------------*/
+    /*-------------  métodos simples  -------------*/
 
 
     public void abrirConta(String t) {
-        setTipo(t);
-        setStatus(true);
-        if (t == "CC") {
-            setSaldo(50);
+        this.setTipo(t);
+        this.setStatus(true);
+        if (t == "CC") {     // aqui posso usar o .equals
+            this.setSaldo(50);
         } else if (t == "CP") {
-            setSaldo(150);
+            this.setSaldo(150);
         }
         System.out.println("Conta aberta com sucesso! ");
     }
+
     public void fecharConta(){
-        if (saldo > 0) {
+        if (this.getSaldo() > 0) {
             System.out.println("Conta com dinheiro, retire o dinheiro para fechar!");
-        } else if (saldo < 0) {
+        } else if (this.getSaldo() < 0) {
             System.out.println("Conta negativada!");
         } else {
             setStatus(false);
@@ -103,3 +104,4 @@ public class ContaBanco {
         }
     }
 }
+
