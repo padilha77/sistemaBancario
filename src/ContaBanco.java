@@ -1,4 +1,3 @@
-import java.util.Scanner;
 public class ContaBanco {
 
 
@@ -6,8 +5,6 @@ public class ContaBanco {
     private int numConta;
     private double saldo;
     private boolean status;
-    private double valorSacado;
-    private double valorDepositado;
 
     // getters, setters e construtores
 
@@ -48,34 +45,61 @@ public class ContaBanco {
     /*-------------  métodos  -------------*/
 
 
-    public void statusConta(){
-        System.out.println("Status da conta: " + this.status);
-    }
-
-    public void abrirConta() {
-        System.out.println("Conta aberta! ");
+    public void abrirConta(String t) {
+        setTipo(t);
+        setStatus(true);
+        if (t == "CC") {
+            setSaldo(50);
+        } else if (t == "CP") {
+            setSaldo(150);
+        }
+        System.out.println("Conta aberta com sucesso! ");
     }
     public void fecharConta(){
-        System.out.println("Conta Fechada! ");
+        if (saldo > 0) {
+            System.out.println("Conta com dinheiro, retire o dinheiro para fechar!");
+        } else if (saldo < 0) {
+            System.out.println("Conta negativada!");
+        } else {
+            setStatus(false);
+            System.out.println("Sua conta foi fechada com  sucesso! ");
+        }
     }
 
-    public void depositar() {
-        Scanner usuarioD = new Scanner(System.in);
-        System.out.println("Qual valor você quer depositar? ");
-        this.valorDepositado = usuarioD.nextDouble();
-        System.out.println("Você depositou R$" + this.valorDepositado);
+    public void depositar(double vd) {    //vd = valor depositado
+        if (getStatus()) {   //getStatus() = status == true
+            setSaldo(getSaldo() + vd);  // setSaldo(getSaldo() + vd) = saldo = saldo + vd
+        } else {
+            System.out.println("Erro ao depositar!");
+        }
     }
 
-    public void sacar() {
-        Scanner usuarioS = new Scanner(System.in);
-        System.out.println("Qual valor você quer sacar? ");
-        this.valorSacado = usuarioS.nextDouble();
-        System.out.println("Você sacou R$" + this.valorSacado);
-
+    public void sacar(double vs) {  //vs = valor sacado
+        if (getStatus()) {
+            if (getSaldo() > vs) {
+                setSaldo(getSaldo() - vs);
+            } else {
+                System.out.println("Saldo insuficiente!");
+            }
+        } else {
+            System.out.println("Erro ao sacar!");
+        }
     }
+
     public void pagarMensal(){
-        this.saldo = 0;
+        double vm = 0;    //vm = valor mensalidade
+
+        if (tipo == "CC") {
+            vm = 12;
+        } else if (tipo == "CP") {
+            vm = 20;
+        }
+        if (getStatus()) {     //se status = true
+            if (saldo > vm) {
+                setSaldo(getSaldo() - vm);
+            } else {
+                System.out.println("Erro ao pagar!");
+            }
+        }
     }
-
-
 }
