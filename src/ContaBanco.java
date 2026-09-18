@@ -77,29 +77,30 @@ public class ContaBanco {
 
     public void sacar(double vs) {  //vs = valor sacado
         if (getStatus()) {
-            if (getSaldo() > vs) {
-                setSaldo(getSaldo() - vs);
+            if (getSaldo() >= vs) {
+                this.setSaldo(this.getSaldo() - vs);
             } else {
                 System.out.println("Saldo insuficiente!");
             }
         } else {
-            System.out.println("Erro ao sacar!");
+            System.out.println("Erro ao sacar, conta fechada!");
         }
     }
 
     public void pagarMensal(){
-        double vm = 0;    //vm = valor mensalidade
+        double vm = 0;    // variavel local / vm = valor mensalidade
 
-        if (tipo == "CC") {
+        if (this.tipo == "CC") {  // aqui posso usar o .equals
             vm = 12;
-        } else if (tipo == "CP") {
+        } else if (this.tipo == "CP") {
             vm = 20;
         }
-        if (getStatus()) {     //se status = true
-            if (saldo > vm) {
-                setSaldo(getSaldo() - vm);
+        if (this.getStatus()) {     //se status = true
+            if (getSaldo() > vm) {
+                this.setSaldo(this.getSaldo() - vm);
+                System.out.println("Mensalidade paga com sucesso!");
             } else {
-                System.out.println("Erro ao pagar!");
+                System.out.println("Erro ao pagar mensalidade!");
             }
         }
     }
