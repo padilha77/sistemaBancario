@@ -3,6 +3,7 @@ public class ContaBanco {
 
     private String tipo;
     private int numConta;
+    private String dono;
     private double saldo;
     private boolean status;
 
@@ -44,6 +45,19 @@ public class ContaBanco {
 
     /*-------------  métodos simples  -------------*/
 
+    public void statusAtual() {
+        System.out.println("Conta: " + getNumConta());
+        System.out.println("Tipo: " + getTipo());
+        System.out.println("Saldo: " + getSaldo());
+        System.out.println("Status: " + getStatus());
+    }
+
+    public void setDono(String d) {
+        this.dono = d;
+    }
+    public String getDono() {
+        return dono;
+    }
 
     public void abrirConta(String t) {
         this.setTipo(t);
